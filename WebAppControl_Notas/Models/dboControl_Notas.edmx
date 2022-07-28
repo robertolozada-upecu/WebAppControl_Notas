@@ -1,0 +1,750 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CONTROL_NOTASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASIGNATURA">
+          <Key>
+            <PropertyRef Name="ID_ASIGNATURA" />
+          </Key>
+          <Property Name="ID_ASIGNATURA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASIG_NOMBRE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ASIG_NIVEL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASIGNATURA_DOCENTE">
+          <Key>
+            <PropertyRef Name="ID_ASIGNATURA_DOCENTE" />
+          </Key>
+          <Property Name="ID_ASIGNATURA_DOCENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ASIGNATURA" Type="int" Nullable="false" />
+          <Property Name="ID_DOCENTE" Type="int" Nullable="false" />
+          <Property Name="ASIG_DOC_MODALIDAD" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CALIFICACION">
+          <Key>
+            <PropertyRef Name="ID_CALIFICACION" />
+          </Key>
+          <Property Name="ID_CALIFICACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_MATRICULA" Type="int" Nullable="false" />
+          <Property Name="ID_ASIGNATURA" Type="int" Nullable="false" />
+          <Property Name="CAL_PARCIAL_1" Type="float" Nullable="false" />
+          <Property Name="CAL_ASISTENCIA_1" Type="int" Nullable="false" />
+          <Property Name="CAL_PARCIAL_2" Type="float" Nullable="false" />
+          <Property Name="CAL_ASISTENCIA_2" Type="int" Nullable="false" />
+          <Property Name="CAL_PARCIAL_3" Type="float" Nullable="false" />
+          <Property Name="CAL_ASISTENCIA_3" Type="int" Nullable="false" />
+          <Property Name="CAL_FINAL" Type="float" Nullable="false" />
+          <Property Name="CAL_OBSERVACION" Type="varchar" MaxLength="100" />
+          <Property Name="CAL_ESTADO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCENTE">
+          <Key>
+            <PropertyRef Name="ID_DOCENTE" />
+          </Key>
+          <Property Name="ID_DOCENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOC_CEDULA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DOC_NOMBRES" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DOC_APELLIDO_PATERNO" Type="varchar" MaxLength="100" />
+          <Property Name="DOC_APELLIDO_MATERNO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DOC_FECHA_NACIMIENTO" Type="date" Nullable="false" />
+          <Property Name="DOC_DIRECCION" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DOC_TELEFONO_FIJO" Type="varchar" MaxLength="15" />
+          <Property Name="DOC_TELEFONO_CELULAR" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DOC_CORREO_PERSONAL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DOC_CORREO_INSTITUCIONAL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DOC_ESTADO" Type="bit" Nullable="false" />
+          <Property Name="DOC_FECHA_INGRESO" Type="date" Nullable="false" />
+          <Property Name="DOC_FECHA_SALIDA" Type="date" />
+          <Property Name="DOC_TIPO" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DOC_USUARIO" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ESTUDIANTE">
+          <Key>
+            <PropertyRef Name="ID_ESTUDIANTE" />
+          </Key>
+          <Property Name="ID_ESTUDIANTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EST_CEDULA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EST_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EST_APELLIDO_PATERNO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EST_APELLIDO_MATERNO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EST_FECHA_NACIMIENTO" Type="date" Nullable="false" />
+          <Property Name="EST_DIRECCION" Type="varchar" MaxLength="150" />
+          <Property Name="EST_TELEFONO_FIJO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EST_TELEFONO_CELULAR" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EST_CORREO_PERSONAL" Type="varchar" MaxLength="150" />
+          <Property Name="EST_CORREO_INSTITUCIONAL" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EST_USUARIO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INSTITUCION">
+          <Key>
+            <PropertyRef Name="ID_INSTITUCION" />
+          </Key>
+          <Property Name="ID_INSTITUCION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INS_RUC" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="INS_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="INS_NIVEL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="INS_LOGO" Type="image" />
+        </EntityType>
+        <EntityType Name="MATRICULA">
+          <Key>
+            <PropertyRef Name="ID_MATRICULA" />
+          </Key>
+          <Property Name="ID_MATRICULA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PERIODO" Type="int" Nullable="false" />
+          <Property Name="ID_ESTUDIANTE" Type="int" Nullable="false" />
+          <Property Name="MAT_FECHA" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NIVEL">
+          <Key>
+            <PropertyRef Name="ID_NIVEL" />
+          </Key>
+          <Property Name="ID_NIVEL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_MATRICULA" Type="int" Nullable="false" />
+          <Property Name="NIV_DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NIV_SECUENCIAL" Type="int" Nullable="false" />
+          <Property Name="NIV_OBSERVACION" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PERIODO">
+          <Key>
+            <PropertyRef Name="ID_PERIODO" />
+          </Key>
+          <Property Name="ID_PERIODO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_INSTITUCION" Type="int" Nullable="false" />
+          <Property Name="PER_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PER_DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="PER_FECHAINICIO" Type="date" Nullable="false" />
+          <Property Name="PER_FECHAFIN" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USU_LOGIN" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="USU_CONTRASENA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="USU_FECHA_REGISTRO" Type="date" Nullable="false" />
+          <Property Name="USU_TIPO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="USU_CADUCIDAD" Type="date" />
+        </EntityType>
+        <Association Name="FK_ASIGNATU_ASIGNATUR_ASIGNATU">
+          <End Role="ASIGNATURA" Type="Self.ASIGNATURA" Multiplicity="1" />
+          <End Role="ASIGNATURA_DOCENTE" Type="Self.ASIGNATURA_DOCENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Principal>
+            <Dependent Role="ASIGNATURA_DOCENTE">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ASIGNATU_DOCENTE_A_DOCENTE">
+          <End Role="DOCENTE" Type="Self.DOCENTE" Multiplicity="1" />
+          <End Role="ASIGNATURA_DOCENTE" Type="Self.ASIGNATURA_DOCENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCENTE">
+              <PropertyRef Name="ID_DOCENTE" />
+            </Principal>
+            <Dependent Role="ASIGNATURA_DOCENTE">
+              <PropertyRef Name="ID_DOCENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALIFICA_ASIGNATUR_ASIGNATU">
+          <End Role="ASIGNATURA" Type="Self.ASIGNATURA" Multiplicity="1" />
+          <End Role="CALIFICACION" Type="Self.CALIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Principal>
+            <Dependent Role="CALIFICACION">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALIFICA_CALIFICAC_MATRICUL">
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="1" />
+          <End Role="CALIFICACION" Type="Self.CALIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATRICULA">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Principal>
+            <Dependent Role="CALIFICACION">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MATRICUL_ESTUDIANT_ESTUDIAN">
+          <End Role="ESTUDIANTE" Type="Self.ESTUDIANTE" Multiplicity="1" />
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUDIANTE">
+              <PropertyRef Name="ID_ESTUDIANTE" />
+            </Principal>
+            <Dependent Role="MATRICULA">
+              <PropertyRef Name="ID_ESTUDIANTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MATRICUL_PERIODO_M_PERIODO">
+          <End Role="PERIODO" Type="Self.PERIODO" Multiplicity="1" />
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERIODO">
+              <PropertyRef Name="ID_PERIODO" />
+            </Principal>
+            <Dependent Role="MATRICULA">
+              <PropertyRef Name="ID_PERIODO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NIVEL_MATRICULA_MATRICUL">
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="1" />
+          <End Role="NIVEL" Type="Self.NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATRICULA">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Principal>
+            <Dependent Role="NIVEL">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERIODO_INSTITUCI_INSTITUC">
+          <End Role="INSTITUCION" Type="Self.INSTITUCION" Multiplicity="1" />
+          <End Role="PERIODO" Type="Self.PERIODO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCION">
+              <PropertyRef Name="ID_INSTITUCION" />
+            </Principal>
+            <Dependent Role="PERIODO">
+              <PropertyRef Name="ID_INSTITUCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CONTROL_NOTASModelStoreContainer">
+          <EntitySet Name="ASIGNATURA" EntityType="Self.ASIGNATURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASIGNATURA_DOCENTE" EntityType="Self.ASIGNATURA_DOCENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CALIFICACION" EntityType="Self.CALIFICACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCENTE" EntityType="Self.DOCENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTUDIANTE" EntityType="Self.ESTUDIANTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INSTITUCION" EntityType="Self.INSTITUCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MATRICULA" EntityType="Self.MATRICULA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NIVEL" EntityType="Self.NIVEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERIODO" EntityType="Self.PERIODO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ASIGNATU_ASIGNATUR_ASIGNATU" Association="Self.FK_ASIGNATU_ASIGNATUR_ASIGNATU">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="ASIGNATURA_DOCENTE" EntitySet="ASIGNATURA_DOCENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ASIGNATU_DOCENTE_A_DOCENTE" Association="Self.FK_ASIGNATU_DOCENTE_A_DOCENTE">
+            <End Role="DOCENTE" EntitySet="DOCENTE" />
+            <End Role="ASIGNATURA_DOCENTE" EntitySet="ASIGNATURA_DOCENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALIFICA_ASIGNATUR_ASIGNATU" Association="Self.FK_CALIFICA_ASIGNATUR_ASIGNATU">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="CALIFICACION" EntitySet="CALIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALIFICA_CALIFICAC_MATRICUL" Association="Self.FK_CALIFICA_CALIFICAC_MATRICUL">
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+            <End Role="CALIFICACION" EntitySet="CALIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MATRICUL_ESTUDIANT_ESTUDIAN" Association="Self.FK_MATRICUL_ESTUDIANT_ESTUDIAN">
+            <End Role="ESTUDIANTE" EntitySet="ESTUDIANTE" />
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MATRICUL_PERIODO_M_PERIODO" Association="Self.FK_MATRICUL_PERIODO_M_PERIODO">
+            <End Role="PERIODO" EntitySet="PERIODO" />
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NIVEL_MATRICULA_MATRICUL" Association="Self.FK_NIVEL_MATRICULA_MATRICUL">
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+            <End Role="NIVEL" EntitySet="NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERIODO_INSTITUCI_INSTITUC" Association="Self.FK_PERIODO_INSTITUCI_INSTITUC">
+            <End Role="INSTITUCION" EntitySet="INSTITUCION" />
+            <End Role="PERIODO" EntitySet="PERIODO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CONTROL_NOTASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ASIGNATURA">
+          <Key>
+            <PropertyRef Name="ID_ASIGNATURA" />
+          </Key>
+          <Property Name="ID_ASIGNATURA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASIG_NOMBRE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ASIG_NIVEL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ASIGNATURA_DOCENTE" Relationship="Self.FK_ASIGNATU_ASIGNATUR_ASIGNATU" FromRole="ASIGNATURA" ToRole="ASIGNATURA_DOCENTE" />
+          <NavigationProperty Name="CALIFICACION" Relationship="Self.FK_CALIFICA_ASIGNATUR_ASIGNATU" FromRole="ASIGNATURA" ToRole="CALIFICACION" />
+        </EntityType>
+        <EntityType Name="ASIGNATURA_DOCENTE">
+          <Key>
+            <PropertyRef Name="ID_ASIGNATURA_DOCENTE" />
+          </Key>
+          <Property Name="ID_ASIGNATURA_DOCENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ASIGNATURA" Type="Int32" Nullable="false" />
+          <Property Name="ID_DOCENTE" Type="Int32" Nullable="false" />
+          <Property Name="ASIG_DOC_MODALIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ASIGNATURA" Relationship="Self.FK_ASIGNATU_ASIGNATUR_ASIGNATU" FromRole="ASIGNATURA_DOCENTE" ToRole="ASIGNATURA" />
+          <NavigationProperty Name="DOCENTE" Relationship="Self.FK_ASIGNATU_DOCENTE_A_DOCENTE" FromRole="ASIGNATURA_DOCENTE" ToRole="DOCENTE" />
+        </EntityType>
+        <EntityType Name="CALIFICACION">
+          <Key>
+            <PropertyRef Name="ID_CALIFICACION" />
+          </Key>
+          <Property Name="ID_CALIFICACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_MATRICULA" Type="Int32" Nullable="false" />
+          <Property Name="ID_ASIGNATURA" Type="Int32" Nullable="false" />
+          <Property Name="CAL_PARCIAL_1" Type="Double" Nullable="false" />
+          <Property Name="CAL_ASISTENCIA_1" Type="Int32" Nullable="false" />
+          <Property Name="CAL_PARCIAL_2" Type="Double" Nullable="false" />
+          <Property Name="CAL_ASISTENCIA_2" Type="Int32" Nullable="false" />
+          <Property Name="CAL_PARCIAL_3" Type="Double" Nullable="false" />
+          <Property Name="CAL_ASISTENCIA_3" Type="Int32" Nullable="false" />
+          <Property Name="CAL_FINAL" Type="Double" Nullable="false" />
+          <Property Name="CAL_OBSERVACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CAL_ESTADO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ASIGNATURA" Relationship="Self.FK_CALIFICA_ASIGNATUR_ASIGNATU" FromRole="CALIFICACION" ToRole="ASIGNATURA" />
+          <NavigationProperty Name="MATRICULA" Relationship="Self.FK_CALIFICA_CALIFICAC_MATRICUL" FromRole="CALIFICACION" ToRole="MATRICULA" />
+        </EntityType>
+        <EntityType Name="DOCENTE">
+          <Key>
+            <PropertyRef Name="ID_DOCENTE" />
+          </Key>
+          <Property Name="ID_DOCENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOC_CEDULA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_NOMBRES" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_APELLIDO_PATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DOC_DIRECCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_TELEFONO_FIJO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_TELEFONO_CELULAR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_CORREO_PERSONAL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_CORREO_INSTITUCIONAL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_ESTADO" Type="Boolean" Nullable="false" />
+          <Property Name="DOC_FECHA_INGRESO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DOC_FECHA_SALIDA" Type="DateTime" Precision="0" />
+          <Property Name="DOC_TIPO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_USUARIO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ASIGNATURA_DOCENTE" Relationship="Self.FK_ASIGNATU_DOCENTE_A_DOCENTE" FromRole="DOCENTE" ToRole="ASIGNATURA_DOCENTE" />
+        </EntityType>
+        <EntityType Name="ESTUDIANTE">
+          <Key>
+            <PropertyRef Name="ID_ESTUDIANTE" />
+          </Key>
+          <Property Name="ID_ESTUDIANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EST_CEDULA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_APELLIDO_PATERNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_APELLIDO_MATERNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EST_DIRECCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EST_TELEFONO_FIJO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_TELEFONO_CELULAR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_CORREO_PERSONAL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EST_CORREO_INSTITUCIONAL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EST_USUARIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MATRICULA" Relationship="Self.FK_MATRICUL_ESTUDIANT_ESTUDIAN" FromRole="ESTUDIANTE" ToRole="MATRICULA" />
+        </EntityType>
+        <EntityType Name="INSTITUCION">
+          <Key>
+            <PropertyRef Name="ID_INSTITUCION" />
+          </Key>
+          <Property Name="ID_INSTITUCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INS_RUC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INS_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INS_NIVEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INS_LOGO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PERIODO" Relationship="Self.FK_PERIODO_INSTITUCI_INSTITUC" FromRole="INSTITUCION" ToRole="PERIODO" />
+        </EntityType>
+        <EntityType Name="MATRICULA">
+          <Key>
+            <PropertyRef Name="ID_MATRICULA" />
+          </Key>
+          <Property Name="ID_MATRICULA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PERIODO" Type="Int32" Nullable="false" />
+          <Property Name="ID_ESTUDIANTE" Type="Int32" Nullable="false" />
+          <Property Name="MAT_FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CALIFICACION" Relationship="Self.FK_CALIFICA_CALIFICAC_MATRICUL" FromRole="MATRICULA" ToRole="CALIFICACION" />
+          <NavigationProperty Name="ESTUDIANTE" Relationship="Self.FK_MATRICUL_ESTUDIANT_ESTUDIAN" FromRole="MATRICULA" ToRole="ESTUDIANTE" />
+          <NavigationProperty Name="PERIODO" Relationship="Self.FK_MATRICUL_PERIODO_M_PERIODO" FromRole="MATRICULA" ToRole="PERIODO" />
+          <NavigationProperty Name="NIVEL" Relationship="Self.FK_NIVEL_MATRICULA_MATRICUL" FromRole="MATRICULA" ToRole="NIVEL" />
+        </EntityType>
+        <EntityType Name="NIVEL">
+          <Key>
+            <PropertyRef Name="ID_NIVEL" />
+          </Key>
+          <Property Name="ID_NIVEL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_MATRICULA" Type="Int32" Nullable="false" />
+          <Property Name="NIV_DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIV_SECUENCIAL" Type="Int32" Nullable="false" />
+          <Property Name="NIV_OBSERVACION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MATRICULA" Relationship="Self.FK_NIVEL_MATRICULA_MATRICUL" FromRole="NIVEL" ToRole="MATRICULA" />
+        </EntityType>
+        <EntityType Name="PERIODO">
+          <Key>
+            <PropertyRef Name="ID_PERIODO" />
+          </Key>
+          <Property Name="ID_PERIODO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_INSTITUCION" Type="Int32" Nullable="false" />
+          <Property Name="PER_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PER_DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PER_FECHAINICIO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PER_FECHAFIN" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="INSTITUCION" Relationship="Self.FK_PERIODO_INSTITUCI_INSTITUC" FromRole="PERIODO" ToRole="INSTITUCION" />
+          <NavigationProperty Name="MATRICULA" Relationship="Self.FK_MATRICUL_PERIODO_M_PERIODO" FromRole="PERIODO" ToRole="MATRICULA" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USU_LOGIN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USU_CONTRASENA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USU_FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="USU_TIPO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USU_CADUCIDAD" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_ASIGNATU_ASIGNATUR_ASIGNATU">
+          <End Role="ASIGNATURA" Type="Self.ASIGNATURA" Multiplicity="1" />
+          <End Role="ASIGNATURA_DOCENTE" Type="Self.ASIGNATURA_DOCENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Principal>
+            <Dependent Role="ASIGNATURA_DOCENTE">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALIFICA_ASIGNATUR_ASIGNATU">
+          <End Role="ASIGNATURA" Type="Self.ASIGNATURA" Multiplicity="1" />
+          <End Role="CALIFICACION" Type="Self.CALIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Principal>
+            <Dependent Role="CALIFICACION">
+              <PropertyRef Name="ID_ASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ASIGNATU_DOCENTE_A_DOCENTE">
+          <End Role="DOCENTE" Type="Self.DOCENTE" Multiplicity="1" />
+          <End Role="ASIGNATURA_DOCENTE" Type="Self.ASIGNATURA_DOCENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCENTE">
+              <PropertyRef Name="ID_DOCENTE" />
+            </Principal>
+            <Dependent Role="ASIGNATURA_DOCENTE">
+              <PropertyRef Name="ID_DOCENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALIFICA_CALIFICAC_MATRICUL">
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="1" />
+          <End Role="CALIFICACION" Type="Self.CALIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATRICULA">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Principal>
+            <Dependent Role="CALIFICACION">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MATRICUL_ESTUDIANT_ESTUDIAN">
+          <End Role="ESTUDIANTE" Type="Self.ESTUDIANTE" Multiplicity="1" />
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUDIANTE">
+              <PropertyRef Name="ID_ESTUDIANTE" />
+            </Principal>
+            <Dependent Role="MATRICULA">
+              <PropertyRef Name="ID_ESTUDIANTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERIODO_INSTITUCI_INSTITUC">
+          <End Role="INSTITUCION" Type="Self.INSTITUCION" Multiplicity="1" />
+          <End Role="PERIODO" Type="Self.PERIODO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCION">
+              <PropertyRef Name="ID_INSTITUCION" />
+            </Principal>
+            <Dependent Role="PERIODO">
+              <PropertyRef Name="ID_INSTITUCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MATRICUL_PERIODO_M_PERIODO">
+          <End Role="PERIODO" Type="Self.PERIODO" Multiplicity="1" />
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERIODO">
+              <PropertyRef Name="ID_PERIODO" />
+            </Principal>
+            <Dependent Role="MATRICULA">
+              <PropertyRef Name="ID_PERIODO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NIVEL_MATRICULA_MATRICUL">
+          <End Role="MATRICULA" Type="Self.MATRICULA" Multiplicity="1" />
+          <End Role="NIVEL" Type="Self.NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATRICULA">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Principal>
+            <Dependent Role="NIVEL">
+              <PropertyRef Name="ID_MATRICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CONTROL_NOTASEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ASIGNATURA" EntityType="Self.ASIGNATURA" />
+          <EntitySet Name="ASIGNATURA_DOCENTE" EntityType="Self.ASIGNATURA_DOCENTE" />
+          <EntitySet Name="CALIFICACION" EntityType="Self.CALIFICACION" />
+          <EntitySet Name="DOCENTE" EntityType="Self.DOCENTE" />
+          <EntitySet Name="ESTUDIANTE" EntityType="Self.ESTUDIANTE" />
+          <EntitySet Name="INSTITUCION" EntityType="Self.INSTITUCION" />
+          <EntitySet Name="MATRICULA" EntityType="Self.MATRICULA" />
+          <EntitySet Name="NIVEL" EntityType="Self.NIVEL" />
+          <EntitySet Name="PERIODO" EntityType="Self.PERIODO" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK_ASIGNATU_ASIGNATUR_ASIGNATU" Association="Self.FK_ASIGNATU_ASIGNATUR_ASIGNATU">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="ASIGNATURA_DOCENTE" EntitySet="ASIGNATURA_DOCENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALIFICA_ASIGNATUR_ASIGNATU" Association="Self.FK_CALIFICA_ASIGNATUR_ASIGNATU">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="CALIFICACION" EntitySet="CALIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ASIGNATU_DOCENTE_A_DOCENTE" Association="Self.FK_ASIGNATU_DOCENTE_A_DOCENTE">
+            <End Role="DOCENTE" EntitySet="DOCENTE" />
+            <End Role="ASIGNATURA_DOCENTE" EntitySet="ASIGNATURA_DOCENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALIFICA_CALIFICAC_MATRICUL" Association="Self.FK_CALIFICA_CALIFICAC_MATRICUL">
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+            <End Role="CALIFICACION" EntitySet="CALIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MATRICUL_ESTUDIANT_ESTUDIAN" Association="Self.FK_MATRICUL_ESTUDIANT_ESTUDIAN">
+            <End Role="ESTUDIANTE" EntitySet="ESTUDIANTE" />
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERIODO_INSTITUCI_INSTITUC" Association="Self.FK_PERIODO_INSTITUCI_INSTITUC">
+            <End Role="INSTITUCION" EntitySet="INSTITUCION" />
+            <End Role="PERIODO" EntitySet="PERIODO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MATRICUL_PERIODO_M_PERIODO" Association="Self.FK_MATRICUL_PERIODO_M_PERIODO">
+            <End Role="PERIODO" EntitySet="PERIODO" />
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NIVEL_MATRICULA_MATRICUL" Association="Self.FK_NIVEL_MATRICULA_MATRICUL">
+            <End Role="MATRICULA" EntitySet="MATRICULA" />
+            <End Role="NIVEL" EntitySet="NIVEL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CONTROL_NOTASModelStoreContainer" CdmEntityContainer="CONTROL_NOTASEntities">
+          <EntitySetMapping Name="ASIGNATURA">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.ASIGNATURA">
+              <MappingFragment StoreEntitySet="ASIGNATURA">
+                <ScalarProperty Name="ID_ASIGNATURA" ColumnName="ID_ASIGNATURA" />
+                <ScalarProperty Name="ASIG_NOMBRE" ColumnName="ASIG_NOMBRE" />
+                <ScalarProperty Name="ASIG_NIVEL" ColumnName="ASIG_NIVEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASIGNATURA_DOCENTE">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.ASIGNATURA_DOCENTE">
+              <MappingFragment StoreEntitySet="ASIGNATURA_DOCENTE">
+                <ScalarProperty Name="ID_ASIGNATURA_DOCENTE" ColumnName="ID_ASIGNATURA_DOCENTE" />
+                <ScalarProperty Name="ID_ASIGNATURA" ColumnName="ID_ASIGNATURA" />
+                <ScalarProperty Name="ID_DOCENTE" ColumnName="ID_DOCENTE" />
+                <ScalarProperty Name="ASIG_DOC_MODALIDAD" ColumnName="ASIG_DOC_MODALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CALIFICACION">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.CALIFICACION">
+              <MappingFragment StoreEntitySet="CALIFICACION">
+                <ScalarProperty Name="ID_CALIFICACION" ColumnName="ID_CALIFICACION" />
+                <ScalarProperty Name="ID_MATRICULA" ColumnName="ID_MATRICULA" />
+                <ScalarProperty Name="ID_ASIGNATURA" ColumnName="ID_ASIGNATURA" />
+                <ScalarProperty Name="CAL_PARCIAL_1" ColumnName="CAL_PARCIAL_1" />
+                <ScalarProperty Name="CAL_ASISTENCIA_1" ColumnName="CAL_ASISTENCIA_1" />
+                <ScalarProperty Name="CAL_PARCIAL_2" ColumnName="CAL_PARCIAL_2" />
+                <ScalarProperty Name="CAL_ASISTENCIA_2" ColumnName="CAL_ASISTENCIA_2" />
+                <ScalarProperty Name="CAL_PARCIAL_3" ColumnName="CAL_PARCIAL_3" />
+                <ScalarProperty Name="CAL_ASISTENCIA_3" ColumnName="CAL_ASISTENCIA_3" />
+                <ScalarProperty Name="CAL_FINAL" ColumnName="CAL_FINAL" />
+                <ScalarProperty Name="CAL_OBSERVACION" ColumnName="CAL_OBSERVACION" />
+                <ScalarProperty Name="CAL_ESTADO" ColumnName="CAL_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCENTE">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.DOCENTE">
+              <MappingFragment StoreEntitySet="DOCENTE">
+                <ScalarProperty Name="ID_DOCENTE" ColumnName="ID_DOCENTE" />
+                <ScalarProperty Name="DOC_CEDULA" ColumnName="DOC_CEDULA" />
+                <ScalarProperty Name="DOC_NOMBRES" ColumnName="DOC_NOMBRES" />
+                <ScalarProperty Name="DOC_APELLIDO_PATERNO" ColumnName="DOC_APELLIDO_PATERNO" />
+                <ScalarProperty Name="DOC_APELLIDO_MATERNO" ColumnName="DOC_APELLIDO_MATERNO" />
+                <ScalarProperty Name="DOC_FECHA_NACIMIENTO" ColumnName="DOC_FECHA_NACIMIENTO" />
+                <ScalarProperty Name="DOC_DIRECCION" ColumnName="DOC_DIRECCION" />
+                <ScalarProperty Name="DOC_TELEFONO_FIJO" ColumnName="DOC_TELEFONO_FIJO" />
+                <ScalarProperty Name="DOC_TELEFONO_CELULAR" ColumnName="DOC_TELEFONO_CELULAR" />
+                <ScalarProperty Name="DOC_CORREO_PERSONAL" ColumnName="DOC_CORREO_PERSONAL" />
+                <ScalarProperty Name="DOC_CORREO_INSTITUCIONAL" ColumnName="DOC_CORREO_INSTITUCIONAL" />
+                <ScalarProperty Name="DOC_ESTADO" ColumnName="DOC_ESTADO" />
+                <ScalarProperty Name="DOC_FECHA_INGRESO" ColumnName="DOC_FECHA_INGRESO" />
+                <ScalarProperty Name="DOC_FECHA_SALIDA" ColumnName="DOC_FECHA_SALIDA" />
+                <ScalarProperty Name="DOC_TIPO" ColumnName="DOC_TIPO" />
+                <ScalarProperty Name="DOC_USUARIO" ColumnName="DOC_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTUDIANTE">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.ESTUDIANTE">
+              <MappingFragment StoreEntitySet="ESTUDIANTE">
+                <ScalarProperty Name="ID_ESTUDIANTE" ColumnName="ID_ESTUDIANTE" />
+                <ScalarProperty Name="EST_CEDULA" ColumnName="EST_CEDULA" />
+                <ScalarProperty Name="EST_NOMBRE" ColumnName="EST_NOMBRE" />
+                <ScalarProperty Name="EST_APELLIDO_PATERNO" ColumnName="EST_APELLIDO_PATERNO" />
+                <ScalarProperty Name="EST_APELLIDO_MATERNO" ColumnName="EST_APELLIDO_MATERNO" />
+                <ScalarProperty Name="EST_FECHA_NACIMIENTO" ColumnName="EST_FECHA_NACIMIENTO" />
+                <ScalarProperty Name="EST_DIRECCION" ColumnName="EST_DIRECCION" />
+                <ScalarProperty Name="EST_TELEFONO_FIJO" ColumnName="EST_TELEFONO_FIJO" />
+                <ScalarProperty Name="EST_TELEFONO_CELULAR" ColumnName="EST_TELEFONO_CELULAR" />
+                <ScalarProperty Name="EST_CORREO_PERSONAL" ColumnName="EST_CORREO_PERSONAL" />
+                <ScalarProperty Name="EST_CORREO_INSTITUCIONAL" ColumnName="EST_CORREO_INSTITUCIONAL" />
+                <ScalarProperty Name="EST_USUARIO" ColumnName="EST_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSTITUCION">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.INSTITUCION">
+              <MappingFragment StoreEntitySet="INSTITUCION">
+                <ScalarProperty Name="ID_INSTITUCION" ColumnName="ID_INSTITUCION" />
+                <ScalarProperty Name="INS_RUC" ColumnName="INS_RUC" />
+                <ScalarProperty Name="INS_NOMBRE" ColumnName="INS_NOMBRE" />
+                <ScalarProperty Name="INS_NIVEL" ColumnName="INS_NIVEL" />
+                <ScalarProperty Name="INS_LOGO" ColumnName="INS_LOGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATRICULA">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.MATRICULA">
+              <MappingFragment StoreEntitySet="MATRICULA">
+                <ScalarProperty Name="ID_MATRICULA" ColumnName="ID_MATRICULA" />
+                <ScalarProperty Name="ID_PERIODO" ColumnName="ID_PERIODO" />
+                <ScalarProperty Name="ID_ESTUDIANTE" ColumnName="ID_ESTUDIANTE" />
+                <ScalarProperty Name="MAT_FECHA" ColumnName="MAT_FECHA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NIVEL">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.NIVEL">
+              <MappingFragment StoreEntitySet="NIVEL">
+                <ScalarProperty Name="ID_NIVEL" ColumnName="ID_NIVEL" />
+                <ScalarProperty Name="ID_MATRICULA" ColumnName="ID_MATRICULA" />
+                <ScalarProperty Name="NIV_DESCRIPCION" ColumnName="NIV_DESCRIPCION" />
+                <ScalarProperty Name="NIV_SECUENCIAL" ColumnName="NIV_SECUENCIAL" />
+                <ScalarProperty Name="NIV_OBSERVACION" ColumnName="NIV_OBSERVACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERIODO">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.PERIODO">
+              <MappingFragment StoreEntitySet="PERIODO">
+                <ScalarProperty Name="ID_PERIODO" ColumnName="ID_PERIODO" />
+                <ScalarProperty Name="ID_INSTITUCION" ColumnName="ID_INSTITUCION" />
+                <ScalarProperty Name="PER_NOMBRE" ColumnName="PER_NOMBRE" />
+                <ScalarProperty Name="PER_DESCRIPCION" ColumnName="PER_DESCRIPCION" />
+                <ScalarProperty Name="PER_FECHAINICIO" ColumnName="PER_FECHAINICIO" />
+                <ScalarProperty Name="PER_FECHAFIN" ColumnName="PER_FECHAFIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="CONTROL_NOTASModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="USU_LOGIN" ColumnName="USU_LOGIN" />
+                <ScalarProperty Name="USU_CONTRASENA" ColumnName="USU_CONTRASENA" />
+                <ScalarProperty Name="USU_FECHA_REGISTRO" ColumnName="USU_FECHA_REGISTRO" />
+                <ScalarProperty Name="USU_TIPO" ColumnName="USU_TIPO" />
+                <ScalarProperty Name="USU_CADUCIDAD" ColumnName="USU_CADUCIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

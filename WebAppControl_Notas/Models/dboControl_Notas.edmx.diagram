@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4060e92b2aae487a91f1afd171e26463" Name="Diagram1">
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.ASIGNATURA" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.ASIGNATURA_DOCENTE" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.CALIFICACION" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.DOCENTE" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.ESTUDIANTE" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.INSTITUCION" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.MATRICULA" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.NIVEL" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.PERIODO" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CONTROL_NOTASModel.USUARIO" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_ASIGNATU_ASIGNATUR_ASIGNATU" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_CALIFICA_ASIGNATUR_ASIGNATU" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_ASIGNATU_DOCENTE_A_DOCENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_CALIFICA_CALIFICAC_MATRICUL" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_MATRICUL_ESTUDIANT_ESTUDIAN" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_PERIODO_INSTITUCI_INSTITUC" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_MATRICUL_PERIODO_M_PERIODO" ManuallyRouted="false" />
+        <AssociationConnector Association="CONTROL_NOTASModel.FK_NIVEL_MATRICULA_MATRICUL" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
